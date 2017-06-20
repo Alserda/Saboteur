@@ -2,24 +2,29 @@ const webpack = require('webpack');
 const path = require('path');
 const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const AssetMapPlugin = require('asset-map-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+
+const paths = {
+  root: path.join(__dirname, '..'),
+  src: path.join(__dirname, '..', 'src'),
+  dist: path.join(__dirname, '..', 'dist'),
+};
 
 module.exports = {
+  context: paths.root,
+  devtool: 'cheap-eval-source-map',
   entry: [
-    './src/app.js'
+    'webpack-hot-middleware/client',
+    'webpack/hot/dev-server',
+    path.join(paths.src, 'app.js'),
   ],
-  resolve: {
-    modules: [
-      path.resolve(__dirname, './src'),
-      'node_modules',
-    ],
-    extensions: ['.js', '.json', '.jsx']
-  },
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: paths.dist,
     filename: 'bundle.js',
-    publicPath: './',
+    publicPath: '/',
+  },
+  resolve: {
+    modules: ['src', 'node_modules'],
+    extensions: ['.json', '.js', '.jsx'],
   },
   module: {
     rules: [
@@ -60,15 +65,9 @@ module.exports = {
         postcss: [autoprefixer]
       }
     }),
-    new HtmlWebpackPlugin({ template: './src/index.html' }),
+    new HtmlWebpackPlugin({ template: 'src/index.html' }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.optimize.UglifyJsPlugin(),
-    // http://stackoverflow.com/questions/30030031/passing-environment-dependent-variables-in-webpack
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
-    }),
-    new CopyWebpackPlugin([{ from: './public' }]),
-  ]
+  ],
 };

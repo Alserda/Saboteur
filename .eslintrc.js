@@ -14,6 +14,13 @@ module.exports = {
     es6: true,
     jest: true,
   },
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "./webpack/webpack.config.js"
+      }
+    }
+  },
   rules: {
     'react/prefer-stateless-function': 1,
     'react/jsx-filename-extension': 0,
