@@ -29,16 +29,45 @@ module.exports = {
   module: {
     rules: [
       {
+        enforce: 'pre',
         test: /\.js$/,
-        loader: 'babel-loader',
         exclude: /node_modules/,
+        loader: 'eslint-loader',
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        options: {
+          cacheDirectory: true,
+        },
       },
       {
         test: /\.less$/,
         use: [
-          'style-loader',
-          'css-loader',
-          'less-loader',
+          { loader: 'style-loader' },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              importLoaders: 2,
+              sourceMap: true,
+              localIdentName: '[local]___[hash:base64:5]',
+            },
+          }, {
+            loader: 'postcss-loader',
+            options: {
+              plugins: () => ([
+                autoprefixer({ browsers: ['last 2 versions'] }),
+              ]),
+            },
+          }, {
+            loader: 'less-loader',
+            options: {
+              outputStyle: 'expanded',
+              sourceMap: true,
+            },
+          },
         ]
       },
       {

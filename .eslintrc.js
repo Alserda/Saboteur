@@ -14,19 +14,12 @@ module.exports = {
     es6: true,
     jest: true,
   },
-  "settings": {
-    "import/resolver": {
-      "webpack": {
-        "config": "./webpack/webpack.config.js"
-      }
-    }
-  },
   rules: {
     'react/prefer-stateless-function': 1,
-    'react/jsx-filename-extension': 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     'react/require-default-props': 0,
     'react/no-array-index-key': 0,
-
+    "react/require-extension": "off",
     'jsx-a11y/label-has-for': 0,
     'jsx-quotes': [1, 'prefer-single'],
 
@@ -35,5 +28,12 @@ module.exports = {
     'semi': ['error', 'always'],
     'comma-dangle': [0, 'never'],
     'no-underscore-dangle': ['error', { 'allow': ['_id'] }],
+  },
+  'settings': {
+    'import/resolver': {
+      'webpack': {
+        'config': './webpack/webpack.config.js'
+      }
+    }
   }
 };
