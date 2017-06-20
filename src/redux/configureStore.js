@@ -1,30 +1,31 @@
-import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
-import { enableBatching } from 'redux-batched-actions';
+import { createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
+import { persistState } from 'redux-devtools'; // eslint-disable-line import/no-extraneous-dependencies
 
-import * as reducers from 'redux/reducers';
+import rootReducer from 'redux/reducers/index';
+import { DevTools } from 'containers';
 
-
-const appReducer = (
-  enableBatching(
-    combineReducers({
-      ...reducers
-    })
-  )
+const enhancer = () => compose(
+  applyMiddleware(thunk, createLogger()),
+  DevTools.instrument(),
+  persistState(
+    window.location.href.match(
+      /[?&]debug_session=([^&#]+)\b/
+    )
+  ),
 );
 
-export default () => {
-  console.log('reducers: ', reducers);
-  const store = createStore(
-    appReducer,
-    compose(
-      applyMiddleware(
-        thunk,
-        createLogger(),
-      )
-    )
-  );
+
+export default function configureStore(initialState) {
+  const store = createStore(rootReducer, initialState, enhancer());
+
+  if (module.hot) {
+    module.hot.accept('redux/reducers', () => {
+      const nextRootReducer = require('redux/reducers/index'); // eslint-disable-line global-require
+      store.replaceReducer(nextRootReducer);
+    });
+  }
 
   return store;
-};
+}
