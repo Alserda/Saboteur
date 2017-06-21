@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Card } from 'components';
 import sharedStyles from 'shared.less';
 
 const Rectangle = ({ black, children }) => {
   const fill = black ? 'black' : 'white';
   const stroke = black ? 'white' : 'black';
+
   return (
     <div
       className={sharedStyles.fullSize}
@@ -24,11 +24,7 @@ const Rectangle = ({ black, children }) => {
 
 Rectangle.propTypes = {
   black: PropTypes.bool,
-  children: PropTypes.instanceOf(
-    PropTypes.oneOf([
-      Card
-    ])
-  )
+  children: PropTypes.objectOf(PropTypes.any),
 };
 
 export default Rectangle;
