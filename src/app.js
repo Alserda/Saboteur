@@ -6,6 +6,8 @@ import configureStore from 'redux/configureStore';
 
 import { Root } from 'containers';
 
+import 'less/style.less';
+
 if (module.hot) {
   module.hot.accept();
 }
