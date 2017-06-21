@@ -21,3 +21,17 @@ export const startCard = new CardModel(Object.assign({}, {
   image: require('images/startcard.png'),
 }));
 
+export const goalCards = [
+  new CardModel(Object.assign({}, {
+    type: cardTypes.goal,
+    image: require('images/goalcard-rock-1.png'),
+  })),
+  new CardModel(Object.assign({}, {
+    type: cardTypes.goal,
+    image: require('images/goalcard-rock-2.png'),
+  })),
+  new CardModel(Object.assign({}, {
+    type: cardTypes.goal,
+    image: require('images/goalcard-gold.png'),
+  })),
+];

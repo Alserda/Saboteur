@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Rectangle, StartCard } from 'components';
 import { tiles } from 'constants/board';
+import { CardModel } from 'models/card';
 
 const rectangleSize = {
   width: `${100 / tiles.x}%`,
@@ -13,7 +14,14 @@ export default class Board extends Component {
   static propTypes = {
     cardPosition: PropTypes.arrayOf(
       PropTypes.number.isRequired
-    ).isRequired
+    ).isRequired,
+    goalPositions: PropTypes.arrayOf(
+      PropTypes.shape({
+        x: PropTypes.number,
+        y: PropTypes.number,
+        card: PropTypes.instanceOf(CardModel),
+      })
+    ),
   };
 
   renderRectangle(i) {
@@ -36,6 +44,7 @@ export default class Board extends Component {
   }
 
   render() {
+    console.log('Props: ', this.props.goalPositions);
     const squares = [];
     const styling = {
       width: '100%',
