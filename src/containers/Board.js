@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { Rectangle, Card } from 'components';
+import { Rectangle, StartCard } from 'components';
 import { tiles } from 'constants/board';
 
 const rectangleSize = {
@@ -23,7 +23,7 @@ export default class Board extends Component {
 
     const [cardX, cardY] = this.props.cardPosition;
     const fragment = (x === cardX && y === cardY) ?
-      <Card /> :
+      <StartCard /> :
       null;
 
     return (
