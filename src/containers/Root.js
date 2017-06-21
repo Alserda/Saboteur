@@ -19,7 +19,7 @@ export default class Root extends Component {
     return (
       <div className={sharedStyles.fullSize}>
         <Provider store={store}>
-          <Rectangle>
+          <Rectangle black>
             <Card />
           </Rectangle>
         </Provider>

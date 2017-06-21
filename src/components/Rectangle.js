@@ -4,13 +4,26 @@ import PropTypes from 'prop-types';
 import { Card } from 'components';
 import sharedStyles from 'shared.less';
 
-const Rectangle = ({ children }) => (
-  <div className={sharedStyles.fullSize} style={{ backgroundColor: 'red' }}>
-    {children}
-  </div>
-);
+const Rectangle = ({ black, children }) => {
+  const fill = black ? 'black' : 'white';
+  const stroke = black ? 'white' : 'black';
+  return (
+    <div
+      className={sharedStyles.fullSize}
+      style={{
+        backgroundColor: fill,
+        color: stroke,
+        height: '100%',
+        width: '100%',
+      }}
+    >
+      {children}
+    </div>
+  );
+};
 
 Rectangle.propTypes = {
+  black: PropTypes.bool,
   children: PropTypes.instanceOf(
     PropTypes.oneOf([
       Card
