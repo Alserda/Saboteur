@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { Rectangle, Card } from 'components';
-import { tilesX, tilesY } from 'constants/board';
+import { tiles } from 'constants/board';
 
 const rectangleSize = {
-  width: `${100 / tilesX}%`,
-  height: `${100 / tilesY}%`,
+  width: `${100 / tiles.x}%`,
+  height: `${100 / tiles.y}%`,
 };
 
 export default class Board extends Component {
@@ -17,8 +17,8 @@ export default class Board extends Component {
   };
 
   renderRectangle(i) {
-    const x = i % tilesX;
-    const y = Math.floor(i / tilesX);
+    const x = i % tiles.x;
+    const y = Math.floor(i / tiles.x);
     const black = (x + y) % 2 === 1;
 
     const [cardX, cardY] = this.props.cardPosition;
@@ -29,7 +29,7 @@ export default class Board extends Component {
     return (
       <div key={i} style={rectangleSize}>
         <Rectangle black={black}>
-          {i + 1}{fragment}
+          {fragment}
         </Rectangle>
       </div>
     );
@@ -44,7 +44,7 @@ export default class Board extends Component {
       flexWrap: 'wrap'
     };
 
-    for (let i = 0; i < (tilesX * tilesY); i += 1) {
+    for (let i = 0; i < (tiles.x * tiles.y); i += 1) {
       squares.push(this.renderRectangle(i));
     }
 
