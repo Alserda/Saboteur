@@ -5,69 +5,47 @@ import { Rectangle } from 'components';
 import { tiles } from 'constants/board';
 import { cards as availableCards } from 'constants/cards';
 import * as cardTypes from 'components/cards';
-// import { CardModel } from 'models/card';
-
-// import { goalPositions, startPosition } from 'constants/rules';
 
 const rectangleSize = {
   width: `${100 / tiles.x}%`,
   height: `${100 / tiles.y}%`,
 };
 
-export default class Board extends Component {
-  static propTypes = {
-    // cardPosition: PropTypes.arrayOf(
-    //   PropTypes.number.isRequired
-    // ).isRequired,
-    // goalPositions: PropTypes.arrayOf(
-    //   PropTypes.shape({
-    //     x: PropTypes.number,
-    //     y: PropTypes.number,
-    //     card: PropTypes.instanceOf(CardModel),
-    //   })
-    // ),
-  };
+const renderRectangle = (i) => {
+  const x = i % tiles.x;
+  const y = Math.floor(i / tiles.x);
+  const black = (x + y) % 2 === 1;
 
-  renderRectangle(i) {
-    const x = i % tiles.x;
-    const y = Math.floor(i / tiles.x);
-    const black = (x + y) % 2 === 1;
+  let TileCard = null;
+  const cardForPosition = availableCards.find(card => (
+    card.x === x && card.y === y
+  ));
 
-    let TileCard = null;
-    const cardForPosition = availableCards.find(card => (
-      card.x === x && card.y === y
-    ));
-
-    if (cardForPosition) {
-      TileCard = cardTypes[cardForPosition.type];
-    }
-
-    return (
-      <div key={i} style={rectangleSize}>
-        <Rectangle black={black}>
-          {TileCard && <TileCard />}
-        </Rectangle>
-      </div>
-    );
+  if (cardForPosition) {
+    TileCard = cardTypes[cardForPosition.type];
   }
 
-  render() {
-    const squares = [];
-    const styling = {
-      width: '100%',
-      height: '100%',
-      display: 'flex',
-      flexWrap: 'wrap'
-    };
+  return (
+    <div key={i} style={rectangleSize}>
+      <Rectangle black={black}>
+        {TileCard && <TileCard />}
+      </Rectangle>
+    </div>
+  );
+};
 
-    for (let i = 0; i < (tiles.x * tiles.y); i += 1) {
-      squares.push(this.renderRectangle(i));
-    }
+const Board = () => {
+  const squares = [];
 
-    return (
-      <div style={styling}>
-        {squares}
-      </div>
-    );
+  for (let i = 0; i < (tiles.x * tiles.y); i += 1) {
+    squares.push(renderRectangle(i));
   }
-}
+
+  return (
+    <div className='Board'>
+      {squares}
+    </div>
+  );
+};
+
+export default Board;

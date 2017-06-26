@@ -45,31 +45,46 @@ module.exports = {
       {
         test: /\.less$/,
         use: [
-          { loader: 'style-loader' },
+          'style-loader',
+          'css-loader',
           {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              importLoaders: 2,
-              sourceMap: true,
-              localIdentName: '[local]___[hash:base64:5]',
-            },
-          }, {
-            loader: 'postcss-loader',
-            options: {
-              plugins: () => ([
-                autoprefixer({ browsers: ['last 2 versions'] }),
-              ]),
-            },
-          }, {
             loader: 'less-loader',
             options: {
               outputStyle: 'expanded',
               sourceMap: true,
             },
           },
-        ]
+        ],
+
       },
+      // {
+      //   test: /\.less$/,
+      //   use: [
+      //     { loader: 'style-loader' },
+      //     {
+      //       loader: 'css-loader',
+      //       options: {
+      //         modules: true,
+      //         importLoaders: 2,
+      //         sourceMap: true,
+      //         localIdentName: '[local]___[hash:base64:5]',
+      //       },
+      //     }, {
+      //       loader: 'postcss-loader',
+      //       options: {
+      //         plugins: () => ([
+      //           autoprefixer({ browsers: ['last 2 versions'] }),
+      //         ]),
+      //       },
+      //     }, {
+      //       loader: 'less-loader',
+      //       options: {
+      //         outputStyle: 'expanded',
+      //         sourceMap: true,
+      //       },
+      //     },
+      //   ]
+      // },
       {
         test: /\.css$/,
         use: [

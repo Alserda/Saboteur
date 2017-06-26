@@ -1,15 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
-import sharedStyles from 'shared.less';
 import { CardModel } from 'models/card';
 
 const Card = ({ card }) => {
-  const { image } = card;
+  const { type, image } = card;
+
+  const styles = classnames({
+    Card: true,
+    [type]: type,
+  });
 
   return (
     <div
-      className={sharedStyles.fullSize}
+      className={styles}
       style={{
         backgroundImage: `url(${image})`,
         backgroundSize: 'cover',

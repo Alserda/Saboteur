@@ -7,7 +7,7 @@ const {
 } = Types;
 
 const initialState = {
-  identifier: '',
+  id: '',
 };
 
 export default (
@@ -18,7 +18,7 @@ export default (
     case START_GAME_REQUESTED:
       return {
         ...state,
-        identifier: action.identifier,
+        id: action.id,
       };
 
     default: return state;

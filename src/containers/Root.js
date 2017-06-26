@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { Board, DevTools } from 'containers';
-import sharedStyles from 'shared.less';
+import { Game, DevTools } from 'containers';
 
 export default class Root extends Component {
   static propTypes = {
@@ -14,9 +13,9 @@ export default class Root extends Component {
     const { store } = this.props;
 
     return (
-      <div className={sharedStyles.fullSize}>
+      <div className='Root'>
         <Provider store={store}>
-          <Board />
+          <Game />
         </Provider>
         <DevTools store={store} />
       </div>
