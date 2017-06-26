@@ -1,6 +1,7 @@
 /* eslint-disable global-require */
 
 import { CardModel } from 'models/card';
+import { startPosition } from 'constants/rules';
 // export const startCards = 1;
 // export const goalCards = 3;
 
@@ -12,13 +13,14 @@ import { CardModel } from 'models/card';
 // export const saboteurs = 4;
 
 export const cardTypes = {
-  start: 'start',
-  goal: 'goal',
+  start: 'Start',
+  goal: 'Goal',
 };
 
 export const startCard = new CardModel(Object.assign({}, {
   type: cardTypes.start,
   image: require('images/startcard.png'),
+  ...startPosition,
 }));
 
 export const goalCards = [
@@ -34,4 +36,9 @@ export const goalCards = [
     type: cardTypes.goal,
     image: require('images/goalcard-gold.png'),
   })),
+];
+
+
+export const cards = [
+  startCard
 ];

@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { Rectangle, StartCard } from 'components';
+import { Rectangle } from 'components';
 import { tiles } from 'constants/board';
-import { CardModel } from 'models/card';
+import { cards as availableCards } from 'constants/cards';
+import * as cardTypes from 'components/cards';
+// import { CardModel } from 'models/card';
+
+// import { goalPositions, startPosition } from 'constants/rules';
 
 const rectangleSize = {
   width: `${100 / tiles.x}%`,
@@ -12,16 +16,16 @@ const rectangleSize = {
 
 export default class Board extends Component {
   static propTypes = {
-    cardPosition: PropTypes.arrayOf(
-      PropTypes.number.isRequired
-    ).isRequired,
-    goalPositions: PropTypes.arrayOf(
-      PropTypes.shape({
-        x: PropTypes.number,
-        y: PropTypes.number,
-        card: PropTypes.instanceOf(CardModel),
-      })
-    ),
+    // cardPosition: PropTypes.arrayOf(
+    //   PropTypes.number.isRequired
+    // ).isRequired,
+    // goalPositions: PropTypes.arrayOf(
+    //   PropTypes.shape({
+    //     x: PropTypes.number,
+    //     y: PropTypes.number,
+    //     card: PropTypes.instanceOf(CardModel),
+    //   })
+    // ),
   };
 
   renderRectangle(i) {
@@ -29,22 +33,25 @@ export default class Board extends Component {
     const y = Math.floor(i / tiles.x);
     const black = (x + y) % 2 === 1;
 
-    const [cardX, cardY] = this.props.cardPosition;
-    const fragment = (x === cardX && y === cardY) ?
-      <StartCard /> :
-      null;
+    let TileCard = null;
+    const cardForPosition = availableCards.find(card => (
+      card.x === x && card.y === y
+    ));
+
+    if (cardForPosition) {
+      TileCard = cardTypes[cardForPosition.type];
+    }
 
     return (
       <div key={i} style={rectangleSize}>
         <Rectangle black={black}>
-          {fragment}
+          {TileCard && <TileCard />}
         </Rectangle>
       </div>
     );
   }
 
   render() {
-    console.log('Props: ', this.props.goalPositions);
     const squares = [];
     const styling = {
       width: '100%',

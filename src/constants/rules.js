@@ -2,8 +2,8 @@ import { tilesOffset, tilesY, tiles } from 'constants/board';
 import { goalCards } from 'constants/cards';
 
 export const startPosition = {
-  x: tilesOffset + 1,
-  y: tilesOffset + Math.round(tilesY / 2),
+  x: tilesOffset,
+  y: (tilesOffset + Math.round(tilesY / 2)) - 1,
 };
 
 export const goalPositions = () => {

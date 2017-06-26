@@ -7,6 +7,8 @@ const Rectangle = ({ black, children }) => {
   const fill = black ? 'black' : 'white';
   const stroke = black ? 'white' : 'black';
 
+  console.log('Rectangle children: ', children);
+
   return (
     <div
       className={sharedStyles.fullSize}
