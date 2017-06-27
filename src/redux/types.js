@@ -12,12 +12,16 @@ const game = [
   'START_GAME_FAILED',
 ];
 
+const board = [
+  'CARD_PLAYED',
+];
 
 /**
  * Make one large array of all types
  */
 const availableTypes = [
   ...game,
+  ...board,
 ];
 
 /**

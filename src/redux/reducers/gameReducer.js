@@ -1,26 +1,16 @@
-import Types from 'redux/types';
+// import Types from 'redux/types';
 
-const {
-  START_GAME_REQUESTED,
-  // START_GAME_SUCCESS,
-  // START_GAME_FAILED,
-} = Types;
+// const {
+//   START_GAME_REQUESTED,
+//   // START_GAME_SUCCESS,
+//   // START_GAME_FAILED,
+// } = Types;
 
-const initialState = {
-  id: '',
-};
+// const initialState = {
+//   id: '',
+//   loading: false,
+// };
 
-export default (
-  state = initialState,
-  action,
-) => {
-  switch (action.type) {
-    case START_GAME_REQUESTED:
-      return {
-        ...state,
-        id: action.id,
-      };
-
-    default: return state;
-  }
-};
+// export default (state = initialState, action) => {
+//   // if (action.type)
+// };
