@@ -6,4 +6,5 @@ export const CardModel = record({
   id: null,
   type: '',
   image: null,
+  rotated: false,
 });
