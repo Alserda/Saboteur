@@ -17,5 +17,7 @@ export const goalPositions = () => {
     });
   }
 
+  console.log('Positions: ', positions);
+
   return positions;
 };

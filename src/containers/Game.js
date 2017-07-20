@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { Board } from 'containers';
@@ -7,9 +8,10 @@ import { Player, PlayerSide } from 'components';
 
 import { CardModel } from 'models/card';
 
+import { playCard } from 'redux/actions/board';
 
-const Game = ({ boardCards }) => {
-  // console.log('Props: ', boardCards);
+const Game = ({ boardCards, actions }) => {
+  console.log('Props: ', boardCards, actions);
   return (
     <div className='Game'>
       <Board cards={boardCards} />
@@ -30,4 +32,11 @@ const mapStateToProps = state => ({
   boardCards: state.board,
 });
 
-export default connect(mapStateToProps)(Game);
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators({
+    playCard,
+  }, dispatch),
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Game);

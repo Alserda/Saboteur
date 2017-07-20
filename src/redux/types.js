@@ -13,7 +13,7 @@ const game = [
 ];
 
 const board = [
-  'CARD_PLAYED',
+  'PLAY_CARD',
 ];
 
 /**
