@@ -5,7 +5,6 @@ import { Card } from 'components/cards';
 import { CardModel } from 'models/card';
 
 const Hand = ({ cards }) => {
-  console.log('cards: ', cards);
   const cardList = cards.map((card, index) => (
     <Card key={index} card={card} />
   ));

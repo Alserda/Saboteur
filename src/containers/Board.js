@@ -2,18 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Rectangle } from 'components';
-import { tiles } from 'constants/board';
+// import { tiles } from 'constants/board';
 import * as cardTypes from 'components/cards';
 
 import { CardModel } from 'models/card';
 
-const rectangleSize = {
-  width: `${100 / tiles.x}%`,
-  height: `${100 / tiles.y}%`,
-};
-
-const Board = ({ cards }) => {
+const Board = ({ cards, tiles }) => {
+  console.log('cards: ', cards);
+  console.log('tile sprops: ', tiles);
   const squares = [];
+
+  const rectangleSize = {
+    width: `${100 / tiles.x}%`,
+    height: `${100 / tiles.y}%`,
+  };
 
   const renderRectangle = (i) => {
     const x = i % tiles.x;
@@ -53,7 +55,11 @@ const Board = ({ cards }) => {
 Board.propTypes = {
   cards: PropTypes.arrayOf(
     PropTypes.instanceOf(CardModel)
-  )
+  ),
+  tiles: PropTypes.shape({
+    x: PropTypes.number,
+    y: PropTypes.number,
+  })
 };
 
 export default Board;

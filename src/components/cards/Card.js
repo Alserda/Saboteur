@@ -5,7 +5,7 @@ import classnames from 'classnames';
 import { CardModel } from 'models/card';
 
 const Card = ({ card }) => {
-  console.log('card: ', card)
+  console.log('Render card!: ', card);
   const { type, image } = card;
 
   const styles = classnames({

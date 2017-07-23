@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -9,32 +9,53 @@ import { Player, PlayerSide } from 'components';
 import { CardModel } from 'models/card';
 
 import { playCard } from 'redux/actions/board';
+import { newGame } from 'redux/actions/game';
 
-const Game = ({ boardCards, actions }) => {
-  console.log('Props: ', boardCards, actions);
-  return (
-    <div className='Game'>
-      <Board cards={boardCards} />
-      <PlayerSide>
-        <Player />
-      </PlayerSide>
-    </div>
-  );
-};
+class Game extends Component {
+  componentWillMount() {
+    this.props.actions.newGame({
+      tilesOffset: 2,
+    });
+  }
+
+  render() {
+    const { board, actions } = this.props;
+
+    return (
+      <div className='Game'>
+        <Board {...board} />
+        <PlayerSide>
+          <Player />
+        </PlayerSide>
+      </div>
+    );
+  }
+}
 
 Game.propTypes = {
-  boardCards: PropTypes.arrayOf(
-    PropTypes.instanceOf(CardModel)
-  )
+  board: PropTypes.shape({
+    cards: PropTypes.arrayOf(
+      PropTypes.instanceOf(CardModel)
+    ),
+    tiles: PropTypes.shape({
+      x: PropTypes.number.isRequired,
+      y: PropTypes.number.isRequired,
+    })
+  }),
+  actions: PropTypes.shape({
+    playCard: PropTypes.func,
+    newGame: PropTypes.func,
+  })
 };
 
 const mapStateToProps = state => ({
-  boardCards: state.board,
+  board: state.board,
 });
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({
     playCard,
+    newGame,
   }, dispatch),
 });
 

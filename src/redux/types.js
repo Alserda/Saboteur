@@ -7,9 +7,7 @@
  */
 
 const game = [
-  'START_GAME_REQUESTED',
-  'START_GAME_SUCCESS',
-  'START_GAME_FAILED',
+  'NEW_GAME',
 ];
 
 const board = [

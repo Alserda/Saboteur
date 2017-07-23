@@ -28,7 +28,6 @@ export const startCard = new CardModel(Object.assign({}, {
   id: 1,
   type: cardTypes.start,
   image: require('images/startcard.png'),
-  ...startPosition,
 }));
 
 /**
