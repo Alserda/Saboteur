@@ -4,8 +4,10 @@ import classnames from 'classnames';
 
 import { CardModel } from 'models/card';
 
-const Card = ({ card }) => {
-  console.log('Render card!: ', card);
+const Card = props => {
+  console.log('Properties: ', props);
+  const { card } = props;
+  // console.log('Render card!: ', card);
   const { type, image } = card;
 
   const styles = classnames({

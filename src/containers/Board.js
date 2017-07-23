@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Rectangle } from 'components';
+import { Card } from 'components/cards';
 // import { tiles } from 'constants/board';
-import * as cardTypes from 'components/cards';
 
 import { CardModel } from 'models/card';
 
@@ -22,19 +22,14 @@ const Board = ({ cards, tiles }) => {
     const y = Math.floor(i / tiles.x);
     const black = (x + y) % 2 === 1;
 
-    let TileCard = null;
     const cardForPosition = cards.find(card => (
       card.x === x && card.y === y
     ));
 
-    if (cardForPosition) {
-      TileCard = cardTypes[cardForPosition.type];
-    }
-
     return (
       <div key={i} style={rectangleSize}>
         <Rectangle black={black}>
-          {TileCard && <TileCard />}
+          {cardForPosition && <Card card={cardForPosition} />}
         </Rectangle>
       </div>
     );

@@ -24,9 +24,9 @@ class Game extends Component {
     return (
       <div className='Game'>
         <Board {...board} />
-        <PlayerSide>
+        {/*<PlayerSide>
           <Player />
-        </PlayerSide>
+        </PlayerSide>*/}
       </div>
     );
   }
