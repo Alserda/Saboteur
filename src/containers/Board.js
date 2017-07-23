@@ -1,15 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Rectangle } from 'components';
-import { Card } from 'components/cards';
+import { Card, Rectangle } from 'components';
 // import { tiles } from 'constants/board';
 
 import { CardModel } from 'models/card';
 
 const Board = ({ cards, tiles }) => {
-  console.log('cards: ', cards);
-  console.log('tile sprops: ', tiles);
   const squares = [];
 
   const rectangleSize = {

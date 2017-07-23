@@ -14,7 +14,7 @@ import { newGame } from 'redux/actions/game';
 class Game extends Component {
   componentWillMount() {
     this.props.actions.newGame({
-      tilesOffset: 2,
+      tilesOffset: 0,
     });
   }
 

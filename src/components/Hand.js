@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Card } from 'components/cards';
+import { Card } from 'components';
 import { CardModel } from 'models/card';
 
 const Hand = ({ cards }) => {

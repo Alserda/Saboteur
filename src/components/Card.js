@@ -4,11 +4,8 @@ import classnames from 'classnames';
 
 import { CardModel } from 'models/card';
 
-const Card = props => {
-  console.log('Properties: ', props);
-  const { card } = props;
-  // console.log('Render card!: ', card);
-  const { type, image } = card;
+const Card = ({ card }) => {
+  const { type, image, rotated } = card;
 
   const styles = classnames({
     Card: true,
@@ -21,6 +18,7 @@ const Card = props => {
       style={{
         backgroundImage: `url(${image})`,
         backgroundSize: 'cover',
+        [rotated && 'transform']: 'rotate(180deg)',
       }}
     />
   );

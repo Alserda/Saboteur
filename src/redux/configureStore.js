@@ -27,7 +27,5 @@ export default function configureStore(initialState) {
     });
   }
 
-  console.log(store.getState());
-
   return store;
 }

@@ -8,7 +8,6 @@ export const defineGoldCard = () => (
 
 export const createGoalCards = (goalCardId, tilesOffset, tiles) => {
   let givenFirstRock = false;
-  console.log('tiles offset:' , tilesOffset);
 
   const cards = goalCards.map((card, index) => {
     let img = '';
@@ -27,8 +26,8 @@ export const createGoalCards = (goalCardId, tilesOffset, tiles) => {
     return (
       card.set('image', img)
       .set('rotated', randomBool())
-      .set('x', tiles.x - tilesOffset)
-      .set('y', tilesOffset + (index * 2) + 1)
+      .set('x', tiles.x - 1 - tilesOffset)
+      .set('y', tilesOffset + (index * 2))
     );
   });
 
