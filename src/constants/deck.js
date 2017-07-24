@@ -82,32 +82,32 @@ import { CardModel, PathModel, pathHelper } from 'models/card';
 
 
 // 67 ipv 69
-
-
-
-const path = {
-  X: 5,
-  XB: 5,
-  RB: 5,
-  LB: 5,
-  Y: 5,
-  YL: 5,
-  XY: 5,
+/* eslint-disable key-spacing */
+const pathAmounts = {
+  X:  3,  //  Horizontal              officially 5?
+  XT: 5,  //  Horizontal with top
+  RB: 4,  //  Right and bottom        officially 5?
+  BL: 5,  //  Bottom and left
+  Y:  4,  //  Vertical                officially 5?
+  YL: 5,  //  Vertical with left
+  XY: 5,  //  All ways
 };
 
-const pathBlockade = {
-  RB: 1,
-  LB: 1,
-  Y: 1,
-  R: 1,
-  T: 1,
-  YR: 1,
-  XY: 2,
-  X: 1,
-  XT: 1,
+const blockadeAmounts = {
+  X:  1,  // Horizontal
+  XT: 1,  // Horizontal with top
+  R:  1,  // Right
+  RB: 1,  // Right and bottom
+  B:  1,  // Bottom
+  BL: 1,  // Bottom and left
+  Y:  1,  // Vertical
+  YR: 1,  // Vertical with right
+  XY: 1,  // All ways                 officially 2?
 };
 
-export const pathX = [...Array(path.X)].map((v, i) => (
+/* eslint-enable key-spacing */
+
+export const pathX = [...Array(pathAmounts.X)].map((v, i) => (
   new CardModel({
     id: `${cardTypes.path}-${i + 1}`,
     type: cardTypes.path,
