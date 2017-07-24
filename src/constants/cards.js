@@ -15,6 +15,7 @@ export const cardTypes = {
   nugget: 'Nugget',
 };
 
+
 /**
  * Constructs the starting card where players should start
  * building from. The startposition is currently using the static
