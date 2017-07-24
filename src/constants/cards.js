@@ -1,20 +1,18 @@
 /* eslint-disable global-require */
 
 import { CardModel } from 'models/card';
-import { startPosition } from 'constants/rules';
-// export const startCards = 1;
-// export const goalCards = 3;
+
 const goalCardsAmount = 3;
-// export const dungeonCards = 44;
-// export const actionCards = 27;
-// export const goldCards = 28;
 
-// export const goldSeekers = 7;
-// export const saboteurs = 4;
-
+/**
+ * Defines all the possible types of cards.
+ */
 export const cardTypes = {
   start: 'Start',
   goal: 'Goal',
+  path: 'Path',
+  action: 'Action',
+  nugget: 'Nugget',
 };
 
 /**
@@ -22,12 +20,12 @@ export const cardTypes = {
  * building from. The startposition is currently using the static
  * rules. This might be dynamic based on the player's dynamic rules.
  *
- * @type  CardModel  A CardModel instance representing the start card.
+ * @return  CardModel  A CardModel instance representing the start card.
  */
 export const startCard = new CardModel(Object.assign({}, {
-  id: 1,
+  id: cardTypes.start,
   type: cardTypes.start,
-  image: require('images/startcard.png'),
+  image: require('images/cards/startcard.png'),
 }));
 
 /**
@@ -40,7 +38,7 @@ export const startCard = new CardModel(Object.assign({}, {
  */
 export const goalCards = [...Array(goalCardsAmount)].map((v, i) => (
   new CardModel({
-    id: i + 2,
+    id: `${cardTypes.goal}-${i + 1}`,
     type: cardTypes.goal,
   })
 ));

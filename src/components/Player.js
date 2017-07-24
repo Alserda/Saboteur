@@ -6,8 +6,11 @@ import { goalCards } from 'constants/cards'; /* Debugging */
 
 const Player = () => (
   <div className='Player'>
-    <Hand cards={goalCards} />
+    player
   </div>
 );
 
 export default Player;
+
+
+// <Hand cards={goalCards} />

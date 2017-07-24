@@ -6,13 +6,18 @@ import { Card, Rectangle } from 'components';
 
 import { CardModel } from 'models/card';
 
-const Board = ({ cards, tiles }) => {
+const Board = ({ cards, tiles, playCard }) => {
   const squares = [];
 
   const rectangleSize = {
     width: `${100 / tiles.x}%`,
     height: `${100 / tiles.y}%`,
   };
+
+  function handleSquareClick(x, y) {
+    playCard(x, y);
+    console.log('handleSquareClick', x, y);
+  }
 
   const renderRectangle = (i) => {
     const x = i % tiles.x;
@@ -24,7 +29,7 @@ const Board = ({ cards, tiles }) => {
     ));
 
     return (
-      <div key={i} style={rectangleSize}>
+      <div key={i} style={rectangleSize} onClick={() => handleSquareClick(x, y)}>
         <Rectangle black={black}>
           {cardForPosition && <Card card={cardForPosition} />}
         </Rectangle>

@@ -13,8 +13,8 @@ import { newGame } from 'redux/actions/game';
 
 class Game extends Component {
   componentWillMount() {
-    this.props.actions.newGame({
-      tilesOffset: 0,
+    this.props.newGame({
+      tilesOffset: 2,
     });
   }
 
@@ -23,10 +23,10 @@ class Game extends Component {
 
     return (
       <div className='Game'>
-        <Board {...board} />
-        {/*<PlayerSide>
+        <Board {...board} {...actions} />
+        <PlayerSide>
           <Player />
-        </PlayerSide>*/}
+        </PlayerSide>
       </div>
     );
   }
@@ -53,9 +53,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  newGame: rules => dispatch(newGame(rules)),
   actions: bindActionCreators({
     playCard,
-    newGame,
   }, dispatch),
 });
 

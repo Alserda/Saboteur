@@ -14,12 +14,12 @@ export const createGoalCards = (goalCardId, tilesOffset, tiles) => {
 
     /* eslint-disable global-require */
     if (goalCardId === card.id) {
-      img = require('images/goalcard-gold.png');
+      img = require('images/cards/goalcard-gold.png');
     } else if (!givenFirstRock) {
-      img = require('images/goalcard-rock-1.png');
+      img = require('images/cards/goalcard-rock-1.png');
       givenFirstRock = true;
     } else {
-      img = require('images/goalcard-rock-2.png');
+      img = require('images/cards/goalcard-rock-2.png');
     }
     /* eslint-enable global-require */
 
