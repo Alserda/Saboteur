@@ -3,13 +3,41 @@
 import { cardTypes } from 'constants/cards';
 import { CardModel, PathModel, pathHelper } from 'models/card';
 
-// export const dungeonCards = 44;
-// export const actionCards = 27;
-// export const goldCards = 28;
-//
 
-// export const goldSeekers = 7;
-// export const saboteurs = 4;
+/**
+ * Extra information for later implementation.
+ *
+ * -------------------------------------------
+ * /\/\/\/\/\/\/\ Dwarf cards /\/\/\/\/\/\/\/\
+ * -------------------------------------------
+ * There are seven miner-cards.
+ * There are four saboteurs.
+ *
+ * -------------------------------------------
+ * /\/\/\/\/\/\/\ Nugget cards /\/\/\/\/\/\/\/
+ * -------------------------------------------
+ * Sixteen cards with one nugget.
+ * Eight cards with two nuggets.
+ * Four cards with three nuggets.
+ *
+ * -------------------------------------------
+ * /\/\/\/\/\/\/\ Action cards /\/\/\/\/\/\/\/
+ * -------------------------------------------
+ * Three cards to destroy a path.
+ * Three cards to break a pickaxe.
+ * Three cards to break a cart
+ * Three cards to break a lamp.
+ * Two cards to fix a pickaxe.
+ * Two cards to fix a cart.
+ * Two cards to fix a lamp.
+ * One card to fix a pickaxe or cart.
+ * One card to fix a lamp or pickaxe.
+ * One card to fix a cart or lamp.
+ * Six cards to spy on a goal card (officially three?)
+ *
+ */
+
+/* eslint-disable key-spacing */
 
 /**
  * Terminology for cards.
@@ -25,64 +53,6 @@ import { CardModel, PathModel, pathHelper } from 'models/card';
  *
  * Be aware that these cards can be rotated by 180 degrees.
  */
-
-
-
-/* Mijn deck */
-
-/* Goud kaarten, 28 kaarten, compleet */
-/* 16 met 1 goudklomp */
-/* 8 met 2 goudklompen */
-/* 4 met 3 goudklompen */
-
-/* Dwerg kaarten, 11 kaarten, compleet */
-/* 7 miners */
-/* 4 saboteurs */
-
-/* Padkaarten */
-/* Links naar rechts, 3 kaarten, zouden 5 moeten zijn */
-
-/* Links naar rechts met boven, 5 */
-
-/* Beneden en rechts, 4, zouden 5 moeten zijn*/
-/* Beneden en links, 5 */
-
-/* Boven naar beneden, 4, zouden 5 moeten zijn */
-
-/* Boven naar beneden met links, 5 */
-
-/* X en Y, 5 */
-
-
-/* Blokkades */
-// Beneden en links, 1
-// Beneden en rechts, 1
-// Beneden en boven, 1
-// Rechts, 1
-// Onder, 1
-// Boven, Rechts, onder, 1
-// X en Y, 1, zouden 2 moeten zijn
-// Links en rechts, 1
-// Boven, links, rechts, 1
-//
-
-/* Actiekaarten */
-
-/* Pad weghalen, 3 */
-// Fix pick + kart, 1
-// Fix pick + lamp, 1
-// Fix lamp + kart, 1
-// Break pick, 3
-// Fix pick, 2
-// Break kart, 3
-// Fix kart, 2,
-// Break lamp, 3
-// Fix lamp, 2
-// Search gold, 6, ipv 3
-
-
-// 67 ipv 69
-/* eslint-disable key-spacing */
 const pathAmounts = {
   X:  3,  //  Horizontal              officially 5?
   XT: 5,  //  Horizontal with top
@@ -94,16 +64,18 @@ const pathAmounts = {
 };
 
 const blockadeAmounts = {
-  X:  1,  // Horizontal
-  XT: 1,  // Horizontal with top
-  R:  1,  // Right
-  RB: 1,  // Right and bottom
-  B:  1,  // Bottom
-  BL: 1,  // Bottom and left
-  Y:  1,  // Vertical
-  YR: 1,  // Vertical with right
-  XY: 1,  // All ways                 officially 2?
+  X:  1,  //  Horizontal
+  XT: 1,  //  Horizontal with top
+  R:  1,  //  Right
+  RB: 1,  //  Right and bottom
+  B:  1,  //  Bottom
+  BL: 1,  //  Bottom and left
+  Y:  1,  //  Vertical
+  YR: 1,  //  Vertical with right
+  XY: 1,  //  All ways                officially 2?
 };
+
+/* My own deck seems to consist of 67 cards (path & action) */
 
 /* eslint-enable key-spacing */
 
