@@ -8,7 +8,7 @@ import { Player, PlayerSide } from 'components';
 
 import { CardModel } from 'models/card';
 
-import { playCard } from 'redux/actions/board';
+import { canPlaceCard, playCard } from 'redux/actions/board';
 import { newGame } from 'redux/actions/game';
 
 class Game extends Component {
@@ -16,6 +16,12 @@ class Game extends Component {
     this.props.newGame({
       tilesOffset: 2,
     });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('next props: ', nextProps);
+    nextProps.actions.canPlaceCard({ card: 1, x: 3, y: 4});
+    // cardSelector();
   }
 
   render() {
@@ -56,6 +62,7 @@ const mapDispatchToProps = dispatch => ({
   newGame: rules => dispatch(newGame(rules)),
   actions: bindActionCreators({
     playCard,
+    canPlaceCard,
   }, dispatch),
 });
 
