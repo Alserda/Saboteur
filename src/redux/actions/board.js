@@ -1,50 +1,24 @@
 import Types from 'redux/types';
-import { createSelector } from 'reselect';
+import {
+  selectCardByPosition as cardPlaced,
+  selectSurroundingCards,
+  pathsMatch
+} from 'utils/cards';
 
 const { PLAY_CARD } = Types;
 
-export const playCard = (x, y) => (dispatch, getState) => {
-  console.log('play card, x, y: ', x, y);
+export const playCard = (card, x, y) => ({
+  type: PLAY_CARD,
+  card: card.set('x', x).set('y', y),
+});
 
-  const card = getState().deck.remaining[0];
-  const updatedCard = card.set('x', x).set('y', y);
+export const canPlaceCard = (card, x, y) => (dispatch, getState) => {
+  const state = getState();
 
-  dispatch({
-    type: PLAY_CARD,
-    card: updatedCard,
-  });
-};
+  if (cardPlaced(x, y)(state)) return false;
 
-const getBoardCards = state => state.board.cards;
+  const surroundings = selectSurroundingCards(x, y)(state);
+  console.log('surroundings: ', surroundings);
 
-// const selectSurroundingCards = (x, y) => createSelector(
-//   [getBoardCards], cards => {
-//     /* eslint-disable no-multi-spaces */
-//     const left   = x - 1;
-//     const right  = x + 1;
-//     const top    = y - 1;
-//     const bottom = y + 1;
-//     /* eslint-enable no-multi-spaces */
-
-//     return cards.filter(card => (
-//      card.x === (left || right) || card.y === (top || bottom)
-//     ));
-//   }
-// );
-
-const selectSurroundingCards = (x, y) => createSelector(
-  [getBoardCards], cards => ({
-    /* eslint-disable key-spacing */
-    top:    cards.filter(card => card.y === (y - 1))[0],
-    right:  cards.filter(card => card.x === (x + 1))[0],
-    bottom: cards.filter(card => card.y === (y + 1))[0],
-    left:   cards.filter(card => card.x === (x - 1))[0],
-    /* eslint-enable key-spacing */
-  })
-);
-
-
-export const canPlaceCard = ({ card, x, y }) => (dispatch, getState) => {
-  const surrounding = selectSurroundingCards(x, y)(getState());
-  console.log('Surrounding cards: ', surrounding);
+  return pathsMatch(card, surroundings);
 };

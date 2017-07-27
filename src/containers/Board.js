@@ -6,7 +6,12 @@ import { Card, Rectangle } from 'components';
 
 import { CardModel } from 'models/card';
 
-const Board = ({ cards, tiles, playCard }) => {
+const Board = ({
+  cards,
+  deck,
+  tiles,
+  actions,
+}) => {
   const squares = [];
 
   const rectangleSize = {
@@ -15,8 +20,11 @@ const Board = ({ cards, tiles, playCard }) => {
   };
 
   function handleSquareClick(x, y) {
-    playCard(x, y);
+    const card = deck.remaining[0];
     console.log('handleSquareClick', x, y);
+    if (actions.canPlaceCard(card, x, y)) {
+      actions.playCard(card, x, y);
+    }
   }
 
   const renderRectangle = (i) => {
@@ -24,14 +32,14 @@ const Board = ({ cards, tiles, playCard }) => {
     const y = Math.floor(i / tiles.x);
     const black = (x + y) % 2 === 1;
 
-    const cardForPosition = cards.find(card => (
-      card.x === x && card.y === y
+    const card = cards.find(entity => (
+      entity.x === x && entity.y === y
     ));
 
     return (
       <div key={i} style={rectangleSize} onClick={() => handleSquareClick(x, y)}>
         <Rectangle black={black}>
-          {cardForPosition && <Card card={cardForPosition} />}
+          {card && <Card card={card} />}
         </Rectangle>
       </div>
     );
@@ -56,7 +64,11 @@ Board.propTypes = {
   tiles: PropTypes.shape({
     x: PropTypes.number,
     y: PropTypes.number,
-  })
+  }),
+  actions: PropTypes.shape({
+    canPlaceCard: PropTypes.func,
+    playCard: PropTypes.func,
+  }),
 };
 
 export default Board;

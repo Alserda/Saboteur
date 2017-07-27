@@ -1,8 +1,8 @@
 /* eslint-disable global-require */
 
 import { cardTypes } from 'constants/cards';
-import { CardModel, PathModel, pathHelper } from 'models/card';
-
+import { CardModel } from 'models/card';
+import { PathModel, pathHelper } from 'models/path';
 
 /**
  * Extra information for later implementation.

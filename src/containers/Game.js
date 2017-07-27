@@ -18,18 +18,12 @@ class Game extends Component {
     });
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log('next props: ', nextProps);
-    nextProps.actions.canPlaceCard({ card: 1, x: 3, y: 4});
-    // cardSelector();
-  }
-
   render() {
-    const { board, actions } = this.props;
+    const { board, deck, actions } = this.props;
 
     return (
       <div className='Game'>
-        <Board {...board} {...actions} />
+        <Board {...board} actions={actions} deck={deck} />
         <PlayerSide>
           <Player />
         </PlayerSide>
@@ -48,14 +42,23 @@ Game.propTypes = {
       y: PropTypes.number.isRequired,
     })
   }),
+  deck: PropTypes.shape({
+    remaining: PropTypes.arrayOf(
+      PropTypes.instanceOf(CardModel)
+    ),
+    exhausted: PropTypes.arrayOf(
+      PropTypes.number,
+    ),
+  }),
+  newGame: PropTypes.func,
   actions: PropTypes.shape({
     playCard: PropTypes.func,
-    newGame: PropTypes.func,
   })
 };
 
 const mapStateToProps = state => ({
   board: state.board,
+  deck: state.deck,
 });
 
 const mapDispatchToProps = dispatch => ({
