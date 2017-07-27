@@ -3,6 +3,14 @@ import { opposites } from 'constants/paths';
 
 const getBoardCards = state => state.board.cards;
 
+
+/**
+ * Fetches cards that surround a specific position on the board.
+ *
+ * @param   Number  x  Number defining the horizontal position.
+ * @param   Number  y  Number defining the vertical position.
+ * @return  Object     Query-result for each side.
+ */
 export const selectSurroundingCards = (x, y) => createSelector(
   [getBoardCards], cards => ({
     /* eslint-disable key-spacing */
@@ -14,6 +22,13 @@ export const selectSurroundingCards = (x, y) => createSelector(
   })
 );
 
+
+/**
+ * Fetches one card for a position on the board.
+ * @param   Number     x  Number defining the horizontal position.
+ * @param   Number     y  Number defining the vertical position.
+ * @return  CardModel     The card on this position.
+ */
 export const selectCardByPosition = (x, y) => createSelector(
   [getBoardCards], cards => cards.filter(card => (
     card.x === x && card.y === y
@@ -67,5 +82,6 @@ export const pathsMatch = (card, surroundings) => {
     return true;
   });
 
+  /* Check if all sides have passed the validation. */
   return pass.filter(bool => bool).length === pass.length;
 };
