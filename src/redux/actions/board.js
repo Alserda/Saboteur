@@ -3,7 +3,8 @@ import {
   selectCardByPosition as cardPlaced,
   selectSurroundingCards,
   pathsMatch
-} from 'utils/cards';
+} from 'utils/board';
+
 
 const { PLAY_CARD } = Types;
 

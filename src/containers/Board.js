@@ -20,8 +20,7 @@ const Board = ({
   };
 
   function handleSquareClick(x, y) {
-    const card = deck.remaining[0];
-    console.log('handleSquareClick', x, y);
+    const card = deck.remaining[Math.floor(Math.random() * (deck.remaining.length - 1))];
     if (actions.canPlaceCard(card, x, y)) {
       actions.playCard(card, x, y);
     }

@@ -19,7 +19,7 @@ const Card = ({ card }) => {
         backgroundImage: `url(${image})`,
         backgroundSize: 'cover',
         // borderRadius: '10px',
-        [rotated && 'transform']: 'rotate(180deg)',
+        [rotated && 'transform']: 'rotate(175deg)',
       }}
     />
   );

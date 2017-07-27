@@ -3,6 +3,7 @@
 import { cardTypes } from 'constants/cards';
 import { CardModel } from 'models/card';
 import { PathModel, pathHelper } from 'models/path';
+import { randomBool } from 'utils';
 
 /**
  * Extra information for later implementation.
@@ -81,13 +82,25 @@ const blockadeAmounts = {
 
 export const pathX = [...Array(pathAmounts.X)].map((v, i) => (
   new CardModel({
-    id: `${cardTypes.path}-${i + 1}`,
+    id: `${cardTypes.path}-X-${i + 1}`,
     type: cardTypes.path,
     image: require('images/cards/path-x.png'),
     path: new PathModel(pathHelper.x),
+    rotated: randomBool(),
+  })
+));
+
+export const pathXT = [...Array(pathAmounts.XT)].map((v, i) => (
+  new CardModel({
+    id: `${cardTypes.path}-XT-${i + 1}`,
+    type: cardTypes.path,
+    image: require('images/cards/path-xt.png'),
+    path: new PathModel({ ...pathHelper.x, top: true }),
+    rotated: randomBool(),
   })
 ));
 
 export const fullDeck = [
-  ...pathX,
+  ...pathXT,
+  // ...pathX,
 ];
