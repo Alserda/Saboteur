@@ -100,7 +100,64 @@ export const pathXT = [...Array(pathAmounts.XT)].map((v, i) => (
   })
 ));
 
+export const pathRB = [...Array(pathAmounts.RB)].map((v, i) => (
+  new CardModel({
+    id: `${cardTypes.path}-RB-${i + 1}`,
+    type: cardTypes.path,
+    image: require('images/cards/path-rb.png'),
+    path: new PathModel({ right: true, bottom: true }),
+    rotated: randomBool(),
+  })
+));
+
+export const pathBL = [...Array(pathAmounts.BL)].map((v, i) => (
+  new CardModel({
+    id: `${cardTypes.path}-BL-${i + 1}`,
+    type: cardTypes.path,
+    image: require('images/cards/path-bl.png'),
+    path: new PathModel({ bottom: true, left: true }),
+    rotated: randomBool(),
+  })
+));
+
+export const pathY = [...Array(pathAmounts.Y)].map((v, i) => (
+  new CardModel({
+    id: `${cardTypes.path}-Y-${i + 1}`,
+    type: cardTypes.path,
+    image: require('images/cards/path-y.png'),
+    path: new PathModel(pathHelper.y),
+    rotated: randomBool(),
+  })
+));
+
+export const pathYL = [...Array(pathAmounts.YL)].map((v, i) => (
+  new CardModel({
+    id: `${cardTypes.path}-YL-${i + 1}`,
+    type: cardTypes.path,
+    image: require('images/cards/path-yl.png'),
+    path: new PathModel({ ...pathHelper.y, left: true }),
+    rotated: randomBool(),
+  })
+));
+
+
+export const pathXY = [...Array(pathAmounts.XY)].map((v, i) => (
+  new CardModel({
+    id: `${cardTypes.path}-XY-${i + 1}`,
+    type: cardTypes.path,
+    image: require('images/cards/path-xy.png'),
+    path: new PathModel(pathHelper.full),
+    rotated: randomBool(),
+  })
+));
+
+
 export const fullDeck = [
   ...pathXT,
-  // ...pathX,
+  ...pathX,
+  ...pathRB,
+  ...pathBL,
+  ...pathY,
+  ...pathYL,
+  ...pathXY,
 ];
