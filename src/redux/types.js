@@ -8,6 +8,7 @@
 
 const game = [
   'NEW_GAME',
+  'START_GAME',
 ];
 
 const board = [

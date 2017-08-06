@@ -6,7 +6,8 @@
   "author": "Peter Alserda",
   "license": "ISC",
   "scripts": {
-    "start": "node ./webpack/server.js"
+    "start": "node ./webpack/server.js",
+    "eslint": "node_modules/eslint/bin/eslint.js --config .eslintrc.json src"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",

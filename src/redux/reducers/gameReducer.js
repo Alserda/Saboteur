@@ -1,16 +1,23 @@
-// import Types from 'redux/types';
+import { tilesOffset } from 'constants/board';
 
-// const {
-//   START_GAME_REQUESTED,
-//   // START_GAME_SUCCESS,
-//   // START_GAME_FAILED,
-// } = Types;
+import Types from 'redux/types';
 
-// const initialState = {
-//   id: '',
-//   loading: false,
-// };
+const { NEW_GAME } = Types;
 
-// export default (state = initialState, action) => {
-//   // if (action.type)
-// };
+const initialState = {
+  rules: {
+    tilesOffset,
+  },
+};
+
+export default (state = initialState, action) => {
+  switch (action.type) {
+    case NEW_GAME:
+      return {
+        ...state,
+        rules: action.rules,
+      };
+
+    default: return state;
+  }
+};

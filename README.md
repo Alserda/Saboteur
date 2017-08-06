@@ -12,6 +12,6 @@ Bord:
 
 # TODO's
 
-- Startkaarten plaatsen
-- Game start inbouwen
-- Bij game start de goudkaart shufflen
+- Hand maken
+- 5 random kaarten geven aan hand
+- DnD
