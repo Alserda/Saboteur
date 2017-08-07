@@ -1,11 +1,15 @@
-// const initialState = {
+import Types from 'redux/types';
+
+const { START_GAME } = Types;
+
+const initialState = {
 //   name: '',
-//   hand: '',
-// };
+  hand: [],
+};
 
-// export default (
-//   state = initialState,
-//   action,
-// ) => {
+export default (
+  state = initialState,
+  action,
+) => {
 
-// }
+};

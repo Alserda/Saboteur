@@ -5,7 +5,7 @@ import { defineGoldCard, createGoalCards, createStardCard } from 'utils/cards';
 const { NEW_GAME } = Types;
 
 
-export const newGame = (rules) => (dispatch) => {
+export const init = (rules) => (dispatch) => {
   const { tilesOffset } = rules;
 
   const tiles = {
@@ -27,3 +27,8 @@ export const newGame = (rules) => (dispatch) => {
     tiles,
   });
 };
+
+
+export const start = () => (dispatch, getState) => {
+  console.log('start game');
+}

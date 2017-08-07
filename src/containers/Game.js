@@ -9,13 +9,20 @@ import { Player, PlayerSide } from 'components';
 import { CardModel } from 'models/card';
 
 import { canPlaceCard, playCard } from 'redux/actions/board';
-import { newGame } from 'redux/actions/game';
+import * as gameActions from 'redux/actions/game';
 
 class Game extends Component {
   componentWillMount() {
-    this.props.newGame({
+    console.log('props:' , this.props);
+    this.props.game.init({
       tilesOffset: 2,
     });
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.props.game.start();
+    }, 1500);
   }
 
   render() {
@@ -50,10 +57,13 @@ Game.propTypes = {
       PropTypes.number,
     ),
   }),
-  newGame: PropTypes.func,
+  game: PropTypes.shape({
+    init: PropTypes.func.isRequired,
+    start: PropTypes.func.isRequired,
+  }).isRequired,
   actions: PropTypes.shape({
-    playCard: PropTypes.func,
-  })
+    playCard: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -62,7 +72,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  newGame: rules => dispatch(newGame(rules)),
+  game: bindActionCreators(gameActions, dispatch),
   actions: bindActionCreators({
     playCard,
     canPlaceCard,
