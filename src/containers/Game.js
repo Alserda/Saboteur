@@ -16,6 +16,7 @@ class Game extends Component {
     console.log('props:' , this.props);
     this.props.game.init({
       tilesOffset: 2,
+      startingCards: 4,
     });
   }
 

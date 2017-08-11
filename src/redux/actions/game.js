@@ -1,6 +1,8 @@
-import { tilesX, tilesY } from 'constants/board';
 import Types from 'redux/types';
+
+import { tilesX, tilesY } from 'constants/board';
 import { defineGoldCard, createGoalCards, createStardCard } from 'utils/cards';
+import { drawFirstCards } from 'redux/actions/deck';
 
 const { NEW_GAME } = Types;
 
@@ -29,6 +31,7 @@ export const init = (rules) => (dispatch) => {
 };
 
 
-export const start = () => (dispatch, getState) => {
+export const start = () => dispatch => {
+  dispatch(drawFirstCards());
   console.log('start game');
-}
+};

@@ -7,6 +7,7 @@ const { NEW_GAME } = Types;
 const initialState = {
   rules: {
     tilesOffset,
+    startingCards: 4,
   },
 };
 

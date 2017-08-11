@@ -15,12 +15,17 @@ const board = [
   'PLAY_CARD',
 ];
 
+const deck = [
+  'DRAW_CARD',
+];
+
 /**
  * Make one large array of all types
  */
 const availableTypes = [
   ...game,
   ...board,
+  ...deck,
 ];
 
 /**
